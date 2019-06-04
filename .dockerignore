@@ -1,0 +1,6 @@
+## Ignoring unused files
+**/*
+
+## Excluding necessery files
+!entrypoint.sh.template
+!unhealth_nodes.sh

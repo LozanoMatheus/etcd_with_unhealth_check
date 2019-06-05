@@ -22,6 +22,6 @@ etcd \
 
 while ps -p $! &> /dev/null ; do
   sleep 60s
-  log_msg "I | unhealth_nodes: Running the unhealth node check"
+  log_msg "I | unhealthy_nodes: Running the unhealthy node check"
   /opt/unhealthy_nodes.sh
 done

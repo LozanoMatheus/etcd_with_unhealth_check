@@ -1,8 +1,30 @@
+[![](https://images.microbadger.com/badges/image/lozanomatheus/etcd_with_unhealth_check:latest.svg)](https://microbadger.com/images/lozanomatheus/etcd_with_unhealth_check:latest) [![](https://images.microbadger.com/badges/version/lozanomatheus/etcd_with_unhealth_check:latest.svg)](https://microbadger.com/images/lozanomatheus/etcd_with_unhealth_check:latest)
+
 # ETCD - Checking and removing old/unhealthy nodes
+
+---
+
+## Index
+
+* [Description](https://github.com/LozanoMatheus/etcd_with_unhealth_check#description)
+* [Dependencies](https://github.com/LozanoMatheus/etcd_with_unhealth_check#dependencies)
+* [How to use](https://github.com/LozanoMatheus/etcd_with_unhealth_check#how-to-use)
+  * [Checking the ETCD version or getting etcd command help](https://github.com/LozanoMatheus/etcd_with_unhealth_check#checking-the-etcd-version-or-getting-etcd-command-help)
+  * [Running the ETCD](https://github.com/LozanoMatheus/etcd_with_unhealth_check#running-the-etcd)
+
+---
+
+## Description
 
 The intention of this project is to check and remove old and unhealthy nodes on ETCD cluster.
 
 This project is an evaluation for ETCD auto-health cluster.
+
+## Dependencies
+
+* [Discovery token](https://coreos.com/os/docs/latest/cluster-discovery.html) - To use "auto discovery" feature during the bootstrap
+
+> Note: This feature is just for a "fresh" cluster, not for add/remove/refresh nodes.
 
 ## How to use
 
@@ -23,4 +45,4 @@ By default, you can set up three variable. They're `MY_CLUSTER_TOKEN`, `MY_DISCO
 docker run --rm -d -e 'MY_DISCOVERY_TOKEN=https://discovery.etcd.io/<YOUR_DISCOVERY_TOKE>' etcd_with_unhealth_check
 ```
 
-> If you don't pass the var `MY_DISCOVERY_TOKEN`, each node will be a single node/cluster.
+> Note: If you don't pass the var `MY_DISCOVERY_TOKEN`, each node will be a single node/cluster.

@@ -7,9 +7,9 @@ RUN yum -y -q install "etcd-${ETCD_VERSION}"\* epel-release \
     && yum clean all \
     && rm -rf /var/cache/yum/ /tmp/{yum_*,*.log}
 
-COPY entrypoint.sh unhealth_nodes.sh /opt/
+COPY entrypoint.sh unhealthy_nodes.sh /opt/
 
-RUN chmod +x /opt/entrypoint.sh /opt/unhealth_nodes.sh
+RUN chmod +x /opt/entrypoint.sh /opt/unhealthy_nodes.sh
 
 ENTRYPOINT [ "/opt/entrypoint.sh" ]
 CMD [ "" ]

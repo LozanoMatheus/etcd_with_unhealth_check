@@ -14,11 +14,11 @@ function log_msg() {
 }
 
 log_msg "I | unhealth_nodes: Checking if the process is already running"
-check_return="$(curl --max-time 5 -Ls http://127.0.0.1:2379/v2/keys/check_cluster)"
+declare -r CHECK_RETURN="$(curl --max-time 5 -Ls http://127.0.0.1:2379/v2/keys/check_cluster)"
 if [[ $? -eq 28 ]]; then
   log_msg "W | unhealth_nodes: Cluster is not ready !"
   exit 28
-elif [[ "$(jq -r '.message' <<< ${check_return})" != 'Key not found' ]]; then
+elif [[ "$(jq -r '.message' <<< ${CHECK_RETURN})" != 'Key not found' ]]; then
   log_msg "W | unhealth_nodes: The check is already running !"
   exit 1
 fi

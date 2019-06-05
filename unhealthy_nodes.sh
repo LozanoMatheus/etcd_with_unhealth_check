@@ -2,6 +2,7 @@
 
 declare -r NODE_DOWN_FILE="/tmp/node_down"
 declare -r ID_NODE_DOWN_FILE="/tmp/id_node_down"
+declare -r LOG_FILE="/tmp/${0//.sh/}_$(date +'%Y%m%d').log"
 
 function finish_him() {
   curl --max-time 5 -Ls http://127.0.0.1:2379/v2/keys/check_cluster -XDELETE &> /dev/null
@@ -10,7 +11,7 @@ function finish_him() {
 trap finish_him EXIT SIGHUP SIGINT SIGQUIT SIGABRT SIGKILL SIGTERM
 
 function log_msg() {
-  echo "`date +'%Y-%m-%d %T.%6N'`" $@
+  echo "$(date +'%Y-%m-%d %T.%6N')" $@ | tee -a "${LOG_FILE}"
 }
 
 log_msg "I | unhealth_nodes: Checking if the process is already running"

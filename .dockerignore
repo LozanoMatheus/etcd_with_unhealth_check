@@ -3,4 +3,4 @@
 
 ## Excluding necessery files
 !entrypoint.sh
-!unhealth_nodes.sh
+!unhealthy_nodes.sh

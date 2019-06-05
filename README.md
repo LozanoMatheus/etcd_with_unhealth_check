@@ -24,7 +24,7 @@ This project is an evaluation for ETCD auto-health cluster.
 
 * [Discovery token](https://coreos.com/os/docs/latest/cluster-discovery.html) - To use "auto discovery" feature during the bootstrap
 
-> Note: This feature is just for a "fresh" cluster, not for add/remove/refresh nodes.
+> _Note: This feature is just for a "fresh" cluster, not for add/remove/refresh nodes._
 
 ## How to use
 
@@ -45,4 +45,22 @@ By default, you can set up three variable. They're `MY_CLUSTER_TOKEN`, `MY_DISCO
 docker run --rm -d -e 'MY_DISCOVERY_TOKEN=https://discovery.etcd.io/<YOUR_DISCOVERY_TOKE>' etcd_with_unhealthy_check
 ```
 
-> Note: If you don't pass the var `MY_DISCOVERY_TOKEN`, each node will be a single node/cluster.
+> _Note: If you don't pass the var `MY_DISCOVERY_TOKEN`, each node will be a single node/cluster._
+
+### Using your own configurations
+
+It's also possible to run the ETCD without the default configurations.
+
+```bash
+docker run --rm etcd_with_unhealthy_check \
+    --listen-peer-urls "http://127.0.0.1:2380" \
+    --listen-client-urls "http://127.0.0.1:2379,http://127.0.0.1:2379" \
+    --name "node_mxh2e2-my-etcd" \
+    --initial-cluster-token node_mxh2e2 \
+    --initial-advertise-peer-urls "http://127.0.0.1:2380" \
+    --advertise-client-urls "http://127.0.0.1:2379" \
+    --discovery "https://discovery.etcd.io/<YOUR_DISCOVERY_TOKE>" \
+    --discovery-fallback exit
+```
+
+> _Note: It will replace all default configurations, it's not possible to mix them. For more configuration, please check the [official ETCD documentation](https://github.com/etcd-io/etcd/blob/master/Documentation/docs.md)._
